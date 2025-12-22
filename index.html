@@ -1,637 +1,487 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardinal Sea Villa Goa | Your Private 4-Bedroom Villa in North Goa</title>
+    <title>Cardinal The Sea Villa | Your Private 4-Bedroom Villa in North Goa</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
-        
-        @keyframes slow-zoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-        .animate-zoom {
-            animation: slow-zoom 20s infinite alternate ease-in-out;
-        }
-        
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        .scroll-reveal {
+    <!-- Configuration for Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cardinal: {
+                            navy: '#0F172A',   /* Deep Luxury Navy */
+                            gold: '#D4AF37',   /* Classic Gold */
+                            sand: '#F5F5F0',   /* Warm Background */
+                            teal: '#115E59',   /* Sea Accent */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-        .scroll-reveal.active {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-stone-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
+<body class="font-sans text-slate-800 bg-cardinal-sand antialiased selection:bg-cardinal-gold selection:text-white">
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex flex-col">
-                <span id="logo-main" class="text-2xl font-bold tracking-tighter text-white transition-colors duration-500">CARDINAL</span>
-                <span id="logo-sub" class="text-[10px] tracking-[0.4em] uppercase font-light text-blue-200 transition-colors duration-500">Sea Villa Goa</span>
-            </div>
-            
-            <div class="hidden md:flex items-center space-x-8 text-xs font-semibold tracking-widest">
-                <a href="#experience" class="nav-link text-white/80 hover:text-white transition-colors">THE EXPERIENCE</a>
-                <a href="#rooms" class="nav-link text-white/80 hover:text-white transition-colors">ROOMS</a>
-                <a href="#amenities" class="nav-link text-white/80 hover:text-white transition-colors">AMENITIES</a>
-                <a href="#booking" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition-all shadow-xl shadow-blue-900/20 active:scale-95">BOOK YOUR STAY</a>
+            <a href="#" class="flex flex-col group">
+                <span class="font-serif text-2xl font-bold text-white tracking-widest group-hover:text-cardinal-gold transition-colors">CARDINAL</span>
+                <span class="text-[9px] uppercase tracking-[0.3em] text-white/80">The Sea Villa Goa</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest uppercase text-white">
+                <a href="#location" class="hover:text-cardinal-gold transition-colors">Location</a>
+                <a href="#rooms" class="hover:text-cardinal-gold transition-colors">Rooms</a>
+                <a href="#amenities" class="hover:text-cardinal-gold transition-colors">Amenities</a>
+                <a href="#booking" class="bg-cardinal-gold hover:bg-white hover:text-cardinal-navy text-cardinal-navy px-6 py-3 transition-all shadow-lg">
+                    Check Availability
+                </a>
             </div>
 
-            <!-- Mobile Menu Toggle -->
-            <button id="menu-btn" class="md:hidden text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <!-- Mobile Toggle -->
+            <button id="mobile-btn" class="md:hidden text-white text-2xl">
+                <i class="fa-solid fa-bars"></i>
             </button>
         </div>
     </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white translate-x-full transition-transform duration-500 flex flex-col items-center justify-center space-y-8">
-        <button id="close-menu" class="absolute top-8 right-8 text-slate-900">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <a href="#experience" class="text-3xl serif text-slate-800">Experience</a>
-        <a href="#rooms" class="text-3xl serif text-slate-800">Rooms</a>
-        <a href="#amenities" class="text-3xl serif text-slate-800">Amenities</a>
-        <a href="#booking" class="bg-blue-600 text-white px-10 py-4 rounded-full text-xl shadow-2xl">Book Now</a>
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-cardinal-navy transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-8 text-white">
+        <button id="close-menu" class="absolute top-6 right-6 text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#location" class="font-serif text-3xl mobile-link">Location</a>
+        <a href="#rooms" class="font-serif text-3xl mobile-link">Rooms</a>
+        <a href="#amenities" class="font-serif text-3xl mobile-link">Amenities</a>
+        <a href="#booking" class="bg-cardinal-gold text-cardinal-navy px-10 py-4 font-bold tracking-widest uppercase mobile-link">Book Now</a>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80" alt="Cardinal Sea Villa Goa" class="w-full h-full object-cover opacity-60 animate-zoom">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
-        </div>
-        
-        <div class="relative z-10 container mx-auto px-6 text-center text-white">
-            <div class="inline-block px-4 py-1.5 border border-white/30 rounded-full text-[10px] tracking-[0.3em] uppercase mb-8 backdrop-blur-sm">
-                Reis Magos, Nerul • North Goa
-            </div>
-            <h1 class="text-5xl md:text-8xl lg:text-7xl mb-6 leading-[0.9] tracking-tighter">
-                Your Private <br>4-Bedroom Villa
-            </h1>
-            <p class="max-w-xl mx-auto text-lg md:text-xl text-white/70 font-light mb-12">
-                A quiet hideaway in the Reis Magos, Nerul belt, offering calm, contemporary space minutes away from Candolim.
-            </p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                <a href="#booking" class="w-full md:w-auto bg-white text-blue-900 px-12 py-5 rounded-full font-bold hover:bg-blue-50 transition-all shadow-2xl flex items-center justify-center">
-                    Check Availability
-                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-                <a href="#experience" class="w-full md:w-auto glass text-white px-12 py-5 rounded-full font-medium hover:bg-white/10 transition-all">
-                    Explore The Villa
-                </a>
-            </div>
+            <!-- Villa image instead of sea view -->
+            <img src="./assets/images/ARW01010.jpg" alt="Cardinal The Sea Villa" class="w-full h-full object-cover brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-cardinal-navy/90 via-transparent to-cardinal-navy/30"></div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-40">
-            <span class="text-[9px] tracking-[0.4em] uppercase mb-4">Discover More</span>
-            <div class="w-px h-16 bg-white/50"></div>
-        </div>
-    </section>
-
-    <!-- The Villa Experience -->
-    <section id="experience" class="py-32 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div class="relative group scroll-reveal">
-                    <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?auto=format&fit=crop&q=80" alt="Villa Living Space" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    </div>
-                    <div class="absolute -bottom-10 -right-10 hidden md:block glass bg-blue-900 text-white p-10 rounded-3xl shadow-2xl max-w-xs">
-                        <div class="flex text-yellow-400 mb-4">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-lg italic serif leading-tight mb-4">"A villa made for easy holidays. Every corner feels relaxed and practical."</p>
-                        <span class="text-[10px] uppercase tracking-widest opacity-60">— Recent Guest</span>
-                    </div>
-                </div>
-
-                <div class="space-y-10 scroll-reveal">
-                    <div class="space-y-4">
-                        <span class="text-blue-600 font-bold tracking-[0.2em] uppercase text-xs">Perfect for Groups</span>
-                        <h2 class="text-4xl md:text-6xl text-slate-900 leading-tight">A Villa Made for <br>Easy Holidays</h2>
-                        <p class="text-slate-500 text-lg leading-relaxed">
-                            Walk into bright, thoughtfully designed interiors, a welcoming living space and a private pool that becomes the heart of your stay. Whether you're travelling with family, friends or a mixed group, the villa gives everyone enough space to relax, unwind and make the most of their time together.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-slate-100">
-                        <div>
-                            <h4 class="text-3xl serif text-slate-900 mb-1">4</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">Spacious Bedrooms</p>
-                        </div>
-                        <div>
-                            <h4 class="text-3xl serif text-slate-900 mb-1">Private</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">Swimming Pool</p>
-                        </div>
-                        <div>
-                            <h4 class="text-3xl serif text-slate-900 mb-1">Complete</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">Home Setup</p>
-                        </div>
-                        <div>
-                            <h4 class="text-3xl serif text-slate-900 mb-1">Gated</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">Secure Community</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Everything You Need -->
-    <section class="py-20 bg-blue-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 scroll-reveal">
-                <h2 class="text-4xl md:text-5xl mb-6">Everything You Need</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto">You get a complete home setup so you can settle in without thinking twice.</p>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
+            <div class="animate-slide-up flex justify-center mb-6">
+                <span class="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-white font-bold rounded-sm">
+                    Your Private 4-Bedroom Villa in North Goa
+                </span>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 scroll-reveal">
-                <div class="bg-white p-8 rounded-2xl shadow-sm">
-                    <div class="text-blue-600 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">Four Spacious Bedrooms</h4>
-                    <p class="text-slate-600 text-sm">All with AC, comfortable bedding and ample storage space</p>
+            <h1 class="animate-slide-up font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight">
+                A Villa Made <br />
+                <span class="text-cardinal-gold italic">for Easy Holidays</span>
+            </h1>
+            
+            <p class="animate-slide-up text-white/90 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed delay-100">
+                A quiet hideaway in Reis Magos, Nerul offering calm, contemporary space minutes from Candolim. Enjoy full privacy, comfort and freedom at your own pace.
+            </p>
+            
+            <div class="animate-slide-up flex flex-col md:flex-row justify-center items-center gap-4 delay-200">
+                <a href="#booking" class="w-full md:w-auto bg-cardinal-gold text-cardinal-navy px-10 py-4 font-bold tracking-widest uppercase hover:bg-white transition-all shadow-xl">
+                    Book Your Stay
+                </a>
+                <a href="#amenities" class="w-full md:w-auto border border-white/40 text-white px-10 py-4 font-bold tracking-widest uppercase hover:bg-white hover:text-cardinal-navy transition-all backdrop-blur-sm">
+                    Explore Amenities
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- The Positioning Hook -->
+    <section id="location" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Text Content -->
+                <div class="reveal space-y-8">
+                    <span class="text-cardinal-teal font-bold tracking-[0.2em] uppercase text-xs">The Perfect Balance</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-cardinal-navy">
+                        Close to Beaches, <br>
+                        <span class="italic text-cardinal-gold">Peaceful at Home</span>
+                    </h2>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        Cardinal The Sea Villa sits in one of North Goa's most balanced neighbourhoods—peaceful enough to feel private, yet close to everything you'd want to explore.
+                    </p>
+                    
+                    <ul class="space-y-4 pt-4">
+                        <li class="flex items-center space-x-4">
+                            <span class="w-8 h-8 rounded-full bg-cardinal-navy/5 flex items-center justify-center text-cardinal-teal"><i class="fa-solid fa-umbrella-beach"></i></span>
+                            <div>
+                                <span class="font-medium text-slate-800">Candolim, Calangute & Baga Beaches</span>
+                                <span class="block text-sm text-slate-500">Just 15–20 minutes away</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <span class="w-8 h-8 rounded-full bg-cardinal-navy/5 flex items-center justify-center text-cardinal-teal"><i class="fa-solid fa-utensils"></i></span>
+                            <div>
+                                <span class="font-medium text-slate-800">Trendy Restaurants & Cafés</span>
+                                <span class="block text-sm text-slate-500">Short drive to Nerul & Candolim</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <span class="w-8 h-8 rounded-full bg-cardinal-navy/5 flex items-center justify-center text-cardinal-teal"><i class="fa-solid fa-home"></i></span>
+                            <div>
+                                <span class="font-medium text-slate-800">Quiet Residential Area</span>
+                                <span class="block text-sm text-slate-500">Gated community with security</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="bg-white p-8 rounded-2xl shadow-sm">
-                    <div class="text-blue-600 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+
+                <!-- Visual/Map Context -->
+                <div class="reveal relative">
+                    <div class="aspect-[4/3] bg-cardinal-navy rounded-sm overflow-hidden relative shadow-2xl">
+                        <img src="./assets/images/ARW00823.jpg" alt="Goa Villa Neighborhood" class="w-full h-full object-cover opacity-60">
+                        <!-- Location Markers -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                            <div class="w-4 h-4 bg-cardinal-gold rounded-full mx-auto relative z-10 border-2 border-white"></div>
+                            <span class="bg-white px-3 py-1 mt-2 inline-block text-[10px] font-bold uppercase tracking-widest shadow-lg">Villa Location</span>
+                        </div>
+                        <div class="absolute bottom-10 left-10">
+                            <span class="text-white text-xs font-bold uppercase tracking-widest block mb-1"><i class="fa-solid fa-arrow-left mr-1"></i> Candolim Beach</span>
+                            <span class="text-white/60 text-[10px]">15-20 min drive</span>
+                        </div>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">Fully Equipped Kitchen</h4>
-                    <p class="text-slate-600 text-sm">Complete with refrigerator, microwave, kettle and cooking essentials</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-2xl shadow-sm">
-                    <div class="text-blue-600 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">Daily Housekeeping</h4>
-                    <p class="text-slate-600 text-sm">Fresh towels, linen and regular cleaning included</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-2xl shadow-sm">
-                    <div class="text-blue-600 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">Wi-Fi & Power Backup</h4>
-                    <p class="text-slate-600 text-sm">Stay connected with high-speed internet and uninterrupted power</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Rooms Section -->
-    <section id="rooms" class="py-32 bg-white">
-        <div class="container mx-auto px-6 text-center mb-20">
-            <h2 class="text-4xl md:text-5xl mb-4">A Calm Space to Come Back To</h2>
-            <p class="text-slate-500 max-w-xl mx-auto">Designed for slow mornings and easy nights. Four bedrooms that feel naturally relaxing the moment you step in.</p>
-        </div>
-
-        <div class="container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Room 1 -->
-            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group scroll-reveal">
-                <div class="aspect-[3/4] overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80" alt="Bedroom Interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
-                    <span class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-900">Master Suite</span>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl serif mb-3">Relaxed Comfort</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Soft colours, comfortable bedding and uncluttered design make every room feel like your own.</p>
-                    <ul class="text-xs text-slate-600 space-y-1">
-                        <li>• Double bed with premium linen</li>
-                        <li>• Quiet air-conditioning</li>
-                        <li>• Ensuite bathroom</li>
-                        <li>• Wardrobe and luggage space</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Room 2 -->
-            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group scroll-reveal">
-                <div class="aspect-[3/4] overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80" alt="Bedroom Interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
-                    <span class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-900">Double Room</span>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl serif mb-3">Simple Essentials</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Nothing loud. Nothing overdone. Just the essentials done well for restful sleep.</p>
-                    <ul class="text-xs text-slate-600 space-y-1">
-                        <li>• Good mattresses & warm lighting</li>
-                        <li>• Fast Wi-Fi access</li>
-                        <li>• Charging points</li>
-                        <li>• Daily housekeeping</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Room 3 -->
-            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group scroll-reveal">
-                <div class="aspect-[3/4] overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&q=80" alt="Bedroom Interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
-                    <span class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-900">Ensuite Room</span>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl serif mb-3">Private Bathrooms</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Each room opens into a clean, well-kept bathroom with steady hot water and fresh towels.</p>
-                    <ul class="text-xs text-slate-600 space-y-1">
-                        <li>• Shower cubicle</li>
-                        <li>• Steady hot water</li>
-                        <li>• Fresh towels on request</li>
-                        <li>• Basic toiletries provided</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Room 4 -->
-            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group scroll-reveal">
-                <div class="aspect-[3/4] overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80" alt="Bedroom Interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
-                    <span class="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-900">Flexible Setup</span>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl serif mb-3">Sleeping Arrangements</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Four double bedrooms with option for extra floor mattress for larger groups.</p>
-                    <ul class="text-xs text-slate-600 space-y-1">
-                        <li>• Four double bedrooms</li>
-                        <li>• Extra mattress available</li>
-                        <li>• Family-friendly</li>
-                        <li>• Group accommodation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location & Nearby -->
-    <section class="py-32 bg-slate-900 text-white">
+    <section id="rooms" class="py-24 bg-cardinal-sand">
         <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div class="space-y-10 scroll-reveal">
-                    <div class="space-y-4">
-                        <span class="text-blue-400 font-bold tracking-[0.2em] uppercase text-xs">Prime Location</span>
-                        <h2 class="text-4xl md:text-6xl text-white leading-tight">Close to Beaches, Cafés <br>and the Goa You Love</h2>
-                        <p class="text-slate-300 text-lg leading-relaxed">
-                            The villa sits in one of North Goa's most popular neighbourhoods, with Candolim, Calangute and Baga just a short drive away. You stay in a peaceful pocket without missing the energy of trendy restaurants and coastline views.
-                        </p>
-                    </div>
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-cardinal-teal font-bold tracking-[0.2em] uppercase text-xs">Accommodation</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-cardinal-navy mb-6">A Calm Space to Come Back To</h2>
+                <p class="text-slate-600 text-lg">
+                    Four bedrooms designed for slow mornings and easy nights. Soft colours, comfortable bedding and uncluttered design make every room feel like your own.
+                </p>
+            </div>
 
-                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-slate-700">
-                        <div>
-                            <h4 class="text-3xl serif text-white mb-1">15-20 min</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">To Popular Beaches</p>
-                        </div>
-                        <div>
-                            <h4 class="text-3xl serif text-white mb-1">Trendy</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">Restaurants & Cafés</p>
-                        </div>
-                        <div>
-                            <h4 class="text-3xl serif text-white mb-1">Peaceful</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">Neighbourhood</p>
-                        </div>
-                        <div>
-                            <h4 class="text-3xl serif text-white mb-1">Easy</h4>
-                            <p class="text-xs uppercase tracking-widest text-slate-400">Access to Essentials</p>
-                        </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Room Card 1 -->
+                <div class="bg-white p-4 shadow-sm hover:shadow-xl transition-all reveal">
+                    <div class="aspect-[3/4] overflow-hidden mb-4 bg-gray-200 relative group">
+                        <img src="./assets/images/ARW00830.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
+                    <h3 class="font-serif text-xl text-cardinal-navy">Spacious Double Room</h3>
+                    <ul class="text-xs text-slate-500 mt-2 space-y-1">
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Comfortable double bed</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Quiet air-conditioning</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Ensuite bathroom</li>
+                    </ul>
                 </div>
 
-                <div class="relative group scroll-reveal">
-                    <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80" alt="Goa Beach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <!-- Room Card 2 -->
+                <div class="bg-white p-4 shadow-sm hover:shadow-xl transition-all reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-[3/4] overflow-hidden mb-4 bg-gray-200 relative group">
+                        <img src="./assets/images/ARW00917.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
-                    <div class="absolute -bottom-8 -left-8 glass bg-white/10 backdrop-blur-md text-white p-6 rounded-2xl shadow-2xl max-w-xs">
-                        <div class="flex items-center mb-3">
-                            <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                            <h4 class="font-bold">Nearby Attractions</h4>
-                        </div>
-                        <ul class="text-sm space-y-2">
-                            <li>• Candolim Beach - 15 minutes</li>
-                            <li>• Calangute Beach - 18 minutes</li>
-                            <li>• Baga Beach - 20 minutes</li>
-                            <li>• Popular restaurants & cafés</li>
-                            <li>• Local stores & essentials</li>
-                        </ul>
+                    <h3 class="font-serif text-xl text-cardinal-navy">Cozy Double Room</h3>
+                    <ul class="text-xs text-slate-500 mt-2 space-y-1">
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Quality linen & bedding</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Wardrobe & storage</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Fast Wi-Fi access</li>
+                    </ul>
+                </div>
+
+                <!-- Room Card 3 -->
+                <div class="bg-white p-4 shadow-sm hover:shadow-xl transition-all reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-[3/4] overflow-hidden mb-4 bg-gray-200 relative group">
+                        <img src="./assets/images/ARW00859.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
+                    <h3 class="font-serif text-xl text-cardinal-navy">Comfort Double Room</h3>
+                    <ul class="text-xs text-slate-500 mt-2 space-y-1">
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Ample charging points</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Daily housekeeping</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Fresh towels provided</li>
+                    </ul>
+                </div>
+
+                <!-- Room Card 4 -->
+                <div class="bg-white p-4 shadow-sm hover:shadow-xl transition-all reveal" style="transition-delay: 300ms;">
+                    <div class="aspect-[3/4] overflow-hidden mb-4 bg-gray-200 relative group">
+                        <img src="./assets/images/ARW01040.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <h3 class="font-serif text-xl text-cardinal-navy">Relax Double Room</h3>
+                    <ul class="text-xs text-slate-500 mt-2 space-y-1">
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Ensuite with shower</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Toiletries included</li>
+                        <li><i class="fa-solid fa-check text-cardinal-gold mr-2"></i> Natural light</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Amenities Section -->
-    <section id="amenities" class="py-32 bg-white">
+    <section id="amenities" class="py-24 bg-white border-y border-gray-100">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-20 scroll-reveal">
-                <h2 class="text-4xl md:text-5xl mb-6">Everything You Need, Thoughtfully Placed</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto">A villa built around ease. Every amenity feels natural, intuitive and ready the moment you arrive.</p>
+            <div class="text-center mb-16 reveal">
+                <span class="text-cardinal-teal font-bold tracking-[0.2em] uppercase text-xs">Amenities</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-cardinal-navy mb-6">Everything You Need, Thoughtfully Placed</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    A villa built around ease. Every amenity feels natural, intuitive and ready the moment you arrive.
+                </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-                <div class="space-y-6 scroll-reveal">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+                <div>
+                    <h3 class="font-serif text-3xl text-cardinal-navy mb-6">Your Own Private Pool</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        The heart of the villa is the private pool. Morning swims, slow afternoons, quiet evenings—this is where most guests end up spending their time.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-wifi text-cardinal-gold"></i>
+                            <span class="text-sm">High-speed Wi-Fi</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-snowflake text-cardinal-gold"></i>
+                            <span class="text-sm">Air conditioning</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-car text-cardinal-gold"></i>
+                            <span class="text-sm">Free parking</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-shield text-cardinal-gold"></i>
+                            <span class="text-sm">Gated security</span>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold">Private Swimming Pool</h3>
-                    <p class="text-slate-600">The heart of the villa - morning swims, slow afternoons, quiet evenings. Exclusive to your group, always clean and inviting.</p>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cardinal-gold mr-3"></i> Fully equipped kitchen with refrigerator & microwave</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cardinal-gold mr-3"></i> Washing machine for guest use</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cardinal-gold mr-3"></i> Power backup during cuts</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cardinal-gold mr-3"></i> Daily housekeeping included</li>
+                    </ul>
                 </div>
-
-                <div class="space-y-6 scroll-reveal">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold">Complete Home Setup</h3>
-                    <p class="text-slate-600">Bright living area, comfortable dining space, fully equipped kitchen - settle into your own rhythm.</p>
-                </div>
-
-                <div class="space-y-6 scroll-reveal">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold">Power & Connectivity</h3>
-                    <p class="text-slate-600">High-speed Wi-Fi, genset backup during power cuts, charging points where you actually need them.</p>
-                </div>
-
-                <div class="space-y-6 scroll-reveal">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold">Kitchen & Dining</h3>
-                    <p class="text-slate-600">Fully equipped with refrigerator, microwave, kettle, cooking essentials. Or order from Zomato/Swiggy.</p>
-                </div>
-
-                <div class="space-y-6 scroll-reveal">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold">Comfort & Convenience</h3>
-                    <p class="text-slate-600">Hot water, shower cubicles, western washrooms, toiletries, umbrellas, caretaker assistance.</p>
-                </div>
-
-                <div class="space-y-6 scroll-reveal">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold">Perfect for Long Stays</h3>
-                    <p class="text-slate-600">With laundry access, full kitchen and calm neighbourhood, ideal for longer holidays or workcations.</p>
+                <div class="relative h-[400px]">
+                    <div class="absolute inset-0 bg-gray-100 transform rotate-3"></div>
+                    <img src="./assets/images/ARW01070.jpg" class="relative z-10 w-full h-full object-cover shadow-lg" alt="Private Pool">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Booking Section -->
-    <section id="booking" class="py-32 bg-slate-950 text-white">
+    <section id="booking" class="py-24 bg-cardinal-navy text-white">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-20 scroll-reveal">
-                <h2 class="text-4xl md:text-6xl mb-6">Plan Your North Goa Getaway</h2>
-                <p class="text-slate-400 max-w-xl mx-auto">Share your travel dates, group size and any preferences, and our team will guide you through the booking process.</p>
+            <div class="text-center mb-16 reveal">
+                <span class="text-cardinal-gold font-bold tracking-[0.2em] uppercase text-xs">Book Your Stay</span>
+                <h2 class="font-serif text-4xl md:text-6xl mt-2">Plan Your North Goa Getaway</h2>
+                <p class="text-white/60 mt-4 max-w-xl mx-auto">
+                    Share your travel dates, group size and any preferences, and our team will guide you through the booking process.
+                </p>
             </div>
 
-            <div class="grid lg:grid-cols-5 gap-12 items-start">
-                <!-- Booking Form -->
-                <div class="lg:col-span-2 bg-white text-slate-900 p-10 rounded-[2.5rem] shadow-2xl scroll-reveal">
-                    <h3 class="text-3xl mb-8 serif">Book Your Stay</h3>
-                    <div class="space-y-6">
-                        <div class="space-y-2">
-                            <label class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">Your Name</label>
-                            <input type="text" placeholder="John Doe" class="w-full bg-slate-50 border-0 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 transition-all outline-none">
+            <div class="grid lg:grid-cols-5 gap-8 items-start">
+                
+                <!-- Inquiry Form -->
+                <div class="lg:col-span-2 bg-white text-slate-900 p-8 rounded-sm shadow-2xl reveal">
+                    <h3 class="font-serif text-2xl mb-6 text-cardinal-navy border-b border-gray-100 pb-4">Contact Us</h3>
+                    
+                    <div id="ghl-form-container" class="space-y-5">
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Name</label>
+                            <input type="text" class="w-full bg-gray-50 border border-gray-200 p-3 focus:border-cardinal-navy focus:outline-none transition-colors">
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">Email Address</label>
-                            <input type="email" placeholder="john@example.com" class="w-full bg-slate-50 border-0 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 transition-all outline-none">
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Phone</label>
+                            <input type="tel" class="w-full bg-gray-50 border border-gray-200 p-3 focus:border-cardinal-navy focus:outline-none transition-colors">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Email</label>
+                            <input type="email" class="w-full bg-gray-50 border border-gray-200 p-3 focus:border-cardinal-navy focus:outline-none transition-colors">
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="space-y-2">
-                                <label class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">Check-In</label>
-                                <input type="date" class="w-full bg-slate-50 border-0 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 transition-all outline-none">
+                            <div class="space-y-1">
+                                <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Check In</label>
+                                <input type="date" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm">
                             </div>
-                            <div class="space-y-2">
-                                <label class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">Check-Out</label>
-                                <input type="date" class="w-full bg-slate-50 border-0 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 transition-all outline-none">
+                            <div class="space-y-1">
+                                <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Check Out</label>
+                                <input type="date" class="w-full bg-gray-50 border border-gray-200 p-3 text-sm">
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">Group Size</label>
-                            <select class="w-full bg-slate-50 border-0 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 transition-all outline-none">
-                                <option>2-4 Guests</option>
-                                <option>4-6 Guests</option>
-                                <option>6-8 Guests</option>
-                                <option>8-11 Guests</option>
-                            </select>
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Message</label>
+                            <textarea class="w-full bg-gray-50 border border-gray-200 p-3 focus:border-cardinal-navy focus:outline-none transition-colors h-24"></textarea>
                         </div>
-                        <button class="w-full bg-blue-600 text-white font-bold py-5 rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-900/40 text-lg">
-                            Request Booking
+                        <button class="w-full bg-cardinal-gold text-cardinal-navy font-bold py-4 uppercase tracking-widest hover:bg-cardinal-navy hover:text-white transition-colors mt-2">
+                            Send Inquiry
                         </button>
-                        <p class="text-[10px] text-center text-slate-400 uppercase tracking-widest pt-4">We'll respond within 2 hours</p>
                     </div>
                 </div>
 
                 <!-- Details & Policies -->
-                <div class="lg:col-span-3 h-full scroll-reveal">
-                    <div class="bg-slate-900 border border-white/10 p-10 rounded-[2.5rem] h-full">
-                        <div class="space-y-8">
+                <div class="lg:col-span-3 h-full reveal">
+                    <div class="bg-white/5 border border-white/10 p-8 h-full rounded-sm">
+                        <h3 class="font-serif text-2xl mb-6">Stay Details</h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
                             <div>
-                                <h3 class="text-2xl serif mb-4">Location Details</h3>
-                                <p class="text-slate-300 mb-2"><strong>Villa No. 4, Three King Resort</strong></p>
-                                <p class="text-slate-400">Reis Magos / Nerul, North Goa</p>
-                                <p class="text-sm text-slate-400 mt-4">A calm neighbourhood with quick access to Candolim, Calangute & Baga beaches, popular restaurants, and local stores.</p>
-                            </div>
-
-                            <div class="border-t border-slate-800 pt-8">
-                                <h3 class="text-2xl serif mb-4">Check-in & Check-out</h3>
-                                <div class="grid md:grid-cols-2 gap-6">
-                                    <div>
-                                        <p class="text-slate-300"><strong>Check-in:</strong> 2 PM</p>
-                                        <p class="text-slate-300"><strong>Check-out:</strong> 11 AM</p>
-                                        <p class="text-sm text-slate-400 mt-2">Early check-in or late check-out can be arranged based on availability.</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm text-slate-300">The villa is rented as a complete home. Families, couples and mixed groups welcome.</p>
-                                    </div>
+                                <h4 class="text-cardinal-gold font-bold mb-4 text-sm uppercase tracking-widest">Location</h4>
+                                <p class="text-white/80 mb-4">
+                                    Villa No. 4, Three King Resort,<br>
+                                    Reis Magos / Nerul, North Goa
+                                </p>
+                                <div class="space-y-2 text-sm">
+                                    <p><i class="fa-solid fa-phone mr-3 text-cardinal-gold"></i> +91 8146608182</p>
+                                    <p><i class="fa-solid fa-envelope mr-3 text-cardinal-gold"></i> contact@cardinalhotels.com</p>
                                 </div>
                             </div>
-
-                            <div class="border-t border-slate-800 pt-8">
-                                <h3 class="text-2xl serif mb-4">House Rules</h3>
-                                <ul class="grid md:grid-cols-2 gap-3 text-sm text-slate-300">
-                                    <li>• No loud music after 10 PM</li>
-                                    <li>• No smoking indoors</li>
-                                    <li>• No unregistered visitors</li>
-                                    <li>• Pets only on prior request</li>
-                                    <li>• Security deposit at check-in</li>
-                                    <li>• Maximum 11 guests</li>
+                            <div>
+                                <h4 class="text-cardinal-gold font-bold mb-4 text-sm uppercase tracking-widest">Check-in & Check-out</h4>
+                                <ul class="space-y-2 text-white/80 text-sm">
+                                    <li>Check-in: 2 PM</li>
+                                    <li>Check-out: 11 AM</li>
+                                    <li>Early/late requests based on availability</li>
                                 </ul>
                             </div>
-
-                            <div class="border-t border-slate-800 pt-8">
-                                <h3 class="text-2xl serif mb-4">Contact Information</h3>
-                                <div class="flex flex-col md:flex-row gap-8">
-                                    <div>
-                                        <p class="text-slate-300"><strong>Phone:</strong></p>
-                                        <p class="text-blue-400">+91 8146608182</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-slate-300"><strong>Email:</strong></p>
-                                        <p class="text-blue-400">contact@cardinalhotels.com</p>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-white/10">
+                            <h4 class="text-cardinal-gold font-bold mb-4 text-sm uppercase tracking-widest">House Rules</h4>
+                            <ul class="space-y-2 text-white/80 text-sm">
+                                <li><i class="fa-solid fa-circle-exclamation text-cardinal-gold mr-2"></i> No loud music after 10 PM</li>
+                                <li><i class="fa-solid fa-circle-exclamation text-cardinal-gold mr-2"></i> No smoking indoors</li>
+                                <li><i class="fa-solid fa-circle-exclamation text-cardinal-gold mr-2"></i> No unregistered visitors</li>
+                                <li><i class="fa-solid fa-circle-exclamation text-cardinal-gold mr-2"></i> Pets only on prior request</li>
+                                <li><i class="fa-solid fa-circle-exclamation text-cardinal-gold mr-2"></i> Security deposit required at check-in</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white py-20 border-t border-slate-100">
+    <footer class="bg-cardinal-navy py-12 border-t border-white/10 text-white">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-20">
-                <div class="col-span-2 space-y-8">
-                    <div class="flex flex-col">
-                        <span class="text-4xl font-bold tracking-tighter text-blue-900">CARDINAL</span>
-                        <span class="text-[10px] tracking-[0.5em] uppercase font-light text-blue-600">Sea Villa Goa</span>
-                    </div>
-                    <p class="text-slate-500 max-w-md text-lg leading-relaxed">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-2">
+                    <span class="font-serif text-2xl font-bold tracking-widest">CARDINAL</span>
+                    <span class="block text-[9px] uppercase tracking-[0.4em] text-cardinal-gold mb-4">The Sea Villa Goa</span>
+                    <p class="text-white/60 text-sm max-w-sm">
                         Cardinal Villa brings together quiet surroundings, warm interiors and a sense of easy luxury. Every corner is designed to help you slow down, unwind and feel at home.
                     </p>
                 </div>
-                
-                <div class="space-y-6">
-                    <h5 class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">Information</h5>
-                    <ul class="space-y-4 text-slate-600 font-medium">
-                        <li><a href="#rooms" class="hover:text-blue-600 transition-colors">Rooms & Suites</a></li>
-                        <li><a href="#amenities" class="hover:text-blue-600 transition-colors">Amenities</a></li>
-                        <li><a href="#experience" class="hover:text-blue-600 transition-colors">Location</a></li>
-                        <li><a href="#booking" class="hover:text-blue-600 transition-colors">Booking Policies</a></li>
+                <div>
+                    <h4 class="text-[10px] uppercase font-bold tracking-[0.2em] text-cardinal-gold mb-4">Quick Links</h4>
+                    <ul class="text-sm text-white/60 space-y-2">
+                        <li><a href="#location" class="hover:text-white">Location</a></li>
+                        <li><a href="#rooms" class="hover:text-white">Rooms</a></li>
+                        <li><a href="#amenities" class="hover:text-white">Amenities</a></li>
+                        <li><a href="#booking" class="hover:text-white">Booking</a></li>
                     </ul>
                 </div>
-
-                <div class="space-y-6">
-                    <h5 class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">Connect With Us</h5>
-                    <ul class="space-y-4 text-slate-600 font-medium">
-                        <li>Villa No. 4, Three King Resort</li>
-                        <li>Reis Magos / Nerul, North Goa</li>
-                        <li>contact@cardinalhotels.com</li>
-                        <li class="text-blue-600 font-bold">+91 8146608182</li>
+                <div>
+                    <h4 class="text-[10px] uppercase font-bold tracking-[0.2em] text-cardinal-gold mb-4">Contact</h4>
+                    <ul class="text-sm text-white/60 space-y-2">
+                        <li><i class="fa-solid fa-location-dot mr-2 text-cardinal-gold"></i> Villa No. 4, Three King Resort</li>
+                        <li><i class="fa-solid fa-phone mr-2 text-cardinal-gold"></i> +91 8146608182</li>
+                        <li><i class="fa-solid fa-envelope mr-2 text-cardinal-gold"></i> contact@cardinalhotels.com</li>
                     </ul>
                 </div>
             </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.2em] text-slate-400 border-t border-slate-50 pt-10">
-                <p>© 2025 Cardinal Sea Villa Goa. Designed for Easy Holidays.</p>
-                <div class="flex space-x-10 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-blue-600">Privacy Policy</a>
-                    <a href="#" class="hover:text-blue-600">Terms & Conditions</a>
-                    <a href="#" class="hover:text-blue-600">Cancellation Policy</a>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-white/40">
+                <p>&copy; 2025 Cardinal The Sea Villa. All Rights Reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <span>Privacy Policy</span>
+                    <span>Terms of Service</span>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // Navbar Scroll Logic
+        // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
-        const logoMain = document.getElementById('logo-main');
-        const logoSub = document.getElementById('logo-sub');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const menuBtn = document.getElementById('menu-btn');
-
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-white/90', 'backdrop-blur-lg', 'shadow-sm', 'py-4');
+                navbar.classList.add('bg-cardinal-navy', 'shadow-lg', 'py-4');
                 navbar.classList.remove('py-6');
-                logoMain.classList.remove('text-white');
-                logoMain.classList.add('text-blue-900');
-                logoSub.classList.remove('text-blue-200');
-                logoSub.classList.add('text-blue-600');
-                menuBtn.classList.add('text-slate-900');
-                menuBtn.classList.remove('text-white');
-                navLinks.forEach(link => {
-                    link.classList.remove('text-white/80');
-                    link.classList.add('text-slate-600', 'hover:text-blue-600');
-                });
             } else {
-                navbar.classList.remove('bg-white/90', 'backdrop-blur-lg', 'shadow-sm', 'py-4');
+                navbar.classList.remove('bg-cardinal-navy', 'shadow-lg', 'py-4');
                 navbar.classList.add('py-6');
-                logoMain.classList.add('text-white');
-                logoMain.classList.remove('text-blue-900');
-                logoSub.classList.add('text-blue-200');
-                logoSub.classList.remove('text-blue-600');
-                menuBtn.classList.remove('text-slate-900');
-                menuBtn.classList.add('text-white');
-                navLinks.forEach(link => {
-                    link.classList.add('text-white/80');
-                    link.classList.remove('text-slate-600', 'hover:text-blue-600');
-                });
             }
         });
 
-        // Mobile Menu Logic
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMenu = document.getElementById('close-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-full');
-        });
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+        }
 
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-        });
+        mobileBtn.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
-        });
-
-        // Scroll Reveal Animation
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        // Reveal Animation on Scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
